@@ -82,7 +82,8 @@ Video Frame
 
 ## 📷 Sample Output
 
-> *(Add demo GIF or screenshot of the live feed with overlays here)*
+> <img width="1906" height="1040" alt="Screenshot 2026-06-10 074632" src="https://github.com/user-attachments/assets/d5208c2d-c649-4839-ad5e-cc5662521f56" />
+
 
 ---
 
