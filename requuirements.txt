@@ -1,0 +1,10 @@
+ultralytics
+opencv-python
+torch
+torchvision
+transformers
+pillow
+numpy
+pyttsx3
+accelerate
+sentencepiece
