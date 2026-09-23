@@ -1,34 +1,34 @@
 # multimodal-surveillance
-🎥 Real-time AI surveillance — YOLOv8 + depth estimation + scene captioning,  fused into one live pipeline with voice alerts.
+ Real-time AI surveillance — YOLOv8 + depth estimation + scene captioning,  fused into one live pipeline with voice alerts.
  An intelligent real-time surveillance system that **sees**, **understands**, and **speaks** — combining BLIP image captioning, people counting, depth estimation, and voice alerts into one unified pipeline.
 
 ---
 
-## 📌 Overview
+##  Overview
 
 Traditional surveillance systems only record footage. This system actively interprets it:
 
-- 📸 **Scene Understanding** — BLIP generates a natural language description of what's happening in frame
-- 🔢 **People Counting** — Detects and counts individuals in real time
-- 📏 **Depth Estimation** — Classifies how close detected people are (near / mid / far)
-- 🔊 **Voice Alerts** — Speaks out loud when someone is detected nearby
+-  **Scene Understanding** — BLIP generates a natural language description of what's happening in frame
+-  **People Counting** — Detects and counts individuals in real time
+-  **Depth Estimation** — Classifies how close detected people are (near / mid / far)
+-  **Voice Alerts** — Speaks out loud when someone is detected nearby
 
 ---
 
-## ✨ Features
+##  Features
 
 | Feature | Description |
 |---------|-------------|
-| 🖼️ BLIP Captioning | Auto-generates scene captions from live video frames |
-| 👥 People Counting | Real-time person detection using object detection model |
-| 📏 Depth Estimation | Estimates proximity using monocular depth model |
-| 🔔 Proximity Alerts | Triggers voice alert: *"Near person detected!"* |
-| 🔊 Text-to-Speech | Speaks captions and alerts aloud |
-| 🎥 Live Feed Support | Works with webcam or pre-recorded video |
+|  BLIP Captioning | Auto-generates scene captions from live video frames |
+|  People Counting | Real-time person detection using object detection model |
+|  Depth Estimation | Estimates proximity using monocular depth model |
+|  Proximity Alerts | Triggers voice alert: *"Near person detected!"* |
+|  Text-to-Speech | Speaks captions and alerts aloud |
+|  Live Feed Support | Works with webcam or pre-recorded video |
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 - **Language:** Python 3.9+
 - **Captioning:** BLIP (Bootstrapped Language-Image Pretraining) — HuggingFace Transformers
@@ -41,7 +41,7 @@ Traditional surveillance systems only record footage. This system actively inter
 
 
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### 1. Clone the repo
 ```bash
@@ -66,7 +66,7 @@ python pipeline.py --source path/to/video.mp4
 
 ---
 
-## 🔄 System Pipeline
+##  System Pipeline
 
 ```
 Video Frame
@@ -80,14 +80,14 @@ Video Frame
 
 ---
 
-## 📷 Sample Output
+## Sample Output
 
 > <img width="1906" height="1040" alt="Screenshot 2026-06-10 074632" src="https://github.com/user-attachments/assets/d5208c2d-c649-4839-ad5e-cc5662521f56" />
 
 
 ---
 
-## 📄 References
+##  References
 
 - [BLIP Paper](https://arxiv.org/abs/2201.12086)
 - [MiDaS Depth Estimation](https://github.com/isl-org/MiDaS)
