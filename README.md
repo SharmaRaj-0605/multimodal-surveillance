@@ -35,10 +35,16 @@ Traditional surveillance systems only record footage. This system actively inter
 - **Detection:** OpenCV / YOLOv8
 - **Depth Estimation:** MiDaS 
 - **Text-to-Speech:** pyttsx3 
-  
+- **Streamlit**
 
 ---
-
+Project Structure
+multimodal-surveillance/
+├── main.py
+├── app.py
+├── requirements.txt
+├── README.md
+└── .gitignore
 
 
 ##  Getting Started
@@ -58,12 +64,13 @@ pip install -r requirements.txt
 ```bash
 python pipeline.py --source 0
 ```
+### 4. Run the application
 
-### 4. Run on a video file
-```bash
-python pipeline.py --source path/to/video.mp4
-```
+Start the Streamlit interface:
 
+streamlit run app.py
+
+Open the local URL displayed in the terminal.
 ---
 
 ##  System Pipeline
@@ -77,13 +84,6 @@ Video Frame
     │                                          ▼
     └──► Depth Estimator ─────► "NEAR" ──► 🔊 Voice Alert
 ```
-
----
-
-## Sample Output
-
-> <img width="1906" height="1040" alt="Screenshot 2026-06-10 074632" src="https://github.com/user-attachments/assets/d5208c2d-c649-4839-ad5e-cc5662521f56" />
-
 
 ---
 
