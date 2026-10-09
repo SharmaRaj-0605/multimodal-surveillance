@@ -6,6 +6,7 @@ import cv2
 import torch
 import pyttsx3
 import numpy as np
+import time
 
 
 from ultralytics import YOLO
@@ -61,22 +62,23 @@ def run_surveillance():
      frame_count = 0
         
      caption_text = "No caption yet"
-        
-     depth_map = None
-        
-        
+
+     prev_time = time.perf_counter()
+     fps = 0
+     latency = 0
+
      while True:
         
             ret, frame = cap.read()
         
             if not ret:
                 break
+
+            start_time = time.perf_counter()
         
             frame_count += 1
         
-            # =========================
             # YOLOv8 DETECTION
-            # =========================
             results = model.track(
                 frame,
                 persist=True,
@@ -86,9 +88,7 @@ def run_surveillance():
         
             annotated_frame = results[0].plot()
         
-            # =========================
             # PERSON COUNT
-            # =========================
             person_count = 0
         
             if results[0].boxes is not None:
@@ -100,9 +100,7 @@ def run_surveillance():
                     if int(cls_id) == 0:
                         person_count += 1
         
-            # =========================
-            # CROWD ALERT
-            # =========================
+
             if person_count >= 5:
         
                 cv2.putText(
@@ -117,10 +115,8 @@ def run_surveillance():
         
                 if frame_count % 100 == 0:
                     speak("Crowd detected")
-        
-            # =========================
+
             # BLIP CAPTIONING
-            # =========================
             if frame_count % 120 == 0:
         
                 rgb = cv2.cvtColor(
@@ -150,12 +146,10 @@ def run_surveillance():
                 cv2.FONT_HERSHEY_SIMPLEX,
                 0.7,
                 (255, 255, 255),
-                2
-            )
+                2)
+            
         
-            # =========================
             # DEPTH ESTIMATION
-            # =========================
             if frame_count % 30 == 0:
         
                 rgb = cv2.cvtColor(
@@ -193,22 +187,8 @@ def run_surveillance():
                     cv2.COLORMAP_MAGMA
                 )
         
-            # SHOW DEPTH MAP
-            if depth_map is not None:
-        
-                small_depth = cv2.resize(
-                    depth_map,
-                    (320, 180)
-                )
-        
-                cv2.imshow(
-                    "Depth Map",
-                    small_depth
-                )
-        
-            # =========================
+       
             # PEOPLE COUNT
-            # =========================
             cv2.putText(
                 annotated_frame,
                 f"People Count: {person_count}",
@@ -216,12 +196,22 @@ def run_surveillance():
                 cv2.FONT_HERSHEY_SIMPLEX,
                 0.8,
                 (0, 255, 0),
-                2
-            )
+                2)
+
+            latency = (time.perf_counter() - start_time) * 1000
+            current_time = time.perf_counter()
+            fps = 1 / max(current_time - prev_time, 1e-9)
+            prev_time = current_time
+            
         
-            # =========================
             # SHOW OUTPUT
-            # =========================
+
+            cv2.putText(
+              annotated_frame,
+              f"FPS: {fps:.1f} | Latency: {latency:.1f} ms",
+                 (20, 170),
+                 cv2.FONT_HERSHEY_SIMPLEX, 0.7,(0, 255, 255),2)
+            
             cv2.imshow(
                 "Multimodal Surveillance Intelligence System",
                 annotated_frame
@@ -236,3 +226,7 @@ def run_surveillance():
         
      cv2.destroyAllWindows()    
         
+
+       
+
+    
